@@ -11,7 +11,7 @@ class Ironclad():
     
     def __str__(self):
         return(
-            "---Ironclad Stats---"
+            "---Ironclad Stats---\n"
             f"Health: {self.health}:\n"
             f"Draw Pile: {[card for card in self.deck]}\n"
             f"Hand: {[card for card in self.hand]}\n"
