@@ -19,14 +19,10 @@ class Deck:
     
     def __str__(self):
         return(
-            f"Draw Pile: {[card.name for card in self.draw_pile]}\n"
-            f"Hand: {[card.name for card in self.hand]}\n"
-            f"Discard Pile: {[card.name for card in self.discard_pile]}\n"
+            f"Draw Pile: {[card for card in self.draw_pile]}\n"
+            f"Hand: {[card for card in self.hand]}\n"
+            f"Discard Pile: {[card for card in self.discard_pile]}\n"
         )
-
-
-    def get_state(self) -> tuple[list, list, list]:
-        return(tuple(self.draw_pile, self.discard_pile, self.hand))
 
     def add_cards(self, cards:list, place:str = "draw_pile") -> None:
         if (place == "draw_pile"):

@@ -11,3 +11,12 @@ cards = {
    # "strike": Card(damage=6,block=0,mana=1),
    # "strike": Card(damage=6,block=0,mana=1)
 }
+
+class ironclad():
+    def __init__(self, deck:Deck, health:int = 87):
+        self.deck = deck
+        self.health = health
+    
+    def play(self):
+        self.dec
+    

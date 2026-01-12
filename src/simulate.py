@@ -1,17 +1,5 @@
-from cards import *
+from ironclad import *
 from classes import *
-
-deck: list = [cards["Strike"],
-              cards["Strike"],
-              cards["Strike"],
-              cards["Strike"],
-              cards["Strike"],
-              cards["Defend"],
-              cards["Defend"],
-              cards["Defend"],
-              cards["Defend"],
-              cards["Bash"]
-              ]
 
 deck = Deck(draw_pile = [
     cards["Strike"],
