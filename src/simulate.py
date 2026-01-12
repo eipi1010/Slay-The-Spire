@@ -24,7 +24,9 @@ def start_turn() -> list:
 def turn():
     player.mana = 3
     player.draw(5)
-    player.play(card_index=0,enemies=enemies,enemy_index=0)
+    for i in range(len(player.hand)):
+        if player.play(card_index=0,enemies=enemies,enemy_index=0):
+            i = 0
     for i in range(len(enemies)):
         if enemies[i].health <= 0:
             enemies.pop(i)   
