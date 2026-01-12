@@ -1,5 +1,4 @@
 from card import *
-from enemies import *
 
 class CardEffects:
     def __init__(self,effects:list):

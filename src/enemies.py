@@ -1,7 +1,8 @@
 from enemy_effects import *
+from ironclad import *
 
-class TestDummy:
-    def __init__(self,health:int = 87,effects:list = []):
+class Monstor:
+    def __init__(self,health:int,effects:EnemyEffects):
         self.health = health
         self.effects = effects
     def __str__(self):
@@ -11,9 +12,9 @@ class TestDummy:
         )
     def lose_health(self, amount:int):
         self.health -= amount
-   # def apply(self):
-   #     for effect in self.effects:
-    #        effect.apply(self,player)
+    def attack(self,player):
+        self.effects.apply(player,self)
+
     
     
     

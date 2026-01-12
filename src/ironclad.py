@@ -14,9 +14,10 @@ cards = {
 }
 
 class Ironclad():
-    def __init__(self, draw_pile: list, health:int = 87, discard_pile: list = [], hand: list =[]):
-        self.draw_pile = draw_pile
+    def __init__(self, deck: list, health:int = 87, mana:int = 3, discard_pile: list = [], hand: list =[]):
+        self.deck = deck
         self.health = health
+        self.mana=mana
         self.discard_pile = discard_pile
         self.hand = hand
     
@@ -24,28 +25,41 @@ class Ironclad():
         return(
             "---Ironclad Stats---"
             f"Health: {self.health}:\n"
-            f"Draw Pile: {[card for card in self.draw_pile]}\n"
+            f"Draw Pile: {[card for card in self.deck]}\n"
             f"Hand: {[card for card in self.hand]}\n"
             f"Discard Pile: {[card for card in self.discard_pile]}\n"
         )
-        
+    
+    def lose_health(self,amount:int):
+        self.health -= amount
+
     def draw(self, card_draw:int) -> None:
-        if len(self.draw_pile) != 0:
-            random.shuffle(self.draw_pile)
+        if len(self.deck) != 0:
+            random.shuffle(self.deck)
         for i in range(card_draw):
-            if len(self.draw_pile) == 0 and len(self.discard_pile) == 0:
+            if len(self.deck) == 0 and len(self.discard_pile) == 0:
                 return
-            elif len(self.draw_pile) == 0:
-                self.draw_pile = self.discard_pile
+            elif len(self.deck) == 0:
+                self.deck = self.discard_pile.copy()
                 self.discard_pile.clear()
-                random.shuffle(self.draw_pile)
-            self.hand.append(self.draw_pile[0])
-            self.draw_pile.pop(0)
+                random.shuffle(self.deck)
+            self.hand.append(self.deck[0])
+            self.deck.pop(0)
+
+    def discard_all(self):
+        self.discard_pile.extend(self.hand)
+        self.hand.clear
         
-    def play(self, card_index:int, enemy, target_enemy:int = 0) -> None:
-        self.hand[card_index].play(enemy, target_enemy)
+    def play(self, card_index:int, enemies, enemy_index:int = 0) -> bool:
+        if self.hand[card_index].mana > self.mana:
+            return False
+        self.mana -= self.hand[card_index].mana
+        self.hand[card_index].play(enemies, enemy_index)
         self.discard_pile.append(self.hand[card_index])
         self.hand.pop(card_index)
+        return True
+    
+
 
 
 

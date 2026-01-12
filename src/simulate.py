@@ -1,6 +1,7 @@
 from ironclad import *
 from card import *
-from enemies import TestDummy
+from enemies import Monstor
+from enemy_effects import *
 
 deck = [
     cards["Strike"],
@@ -15,19 +16,41 @@ deck = [
    # cards["Bash"]
    ]
 
-player = Ironclad(deck)
-enemies = [TestDummy()]
-
 def start_turn() -> list:
     mana = 3
     player.draw(1)
     return mana
 
-for round in range(3):
-    start_turn()
-    selected_card = 0
-    target_enemy = 0
-    player.play(0,enemies,target_enemy)
-    print(player)
-    print(enemies[0])
+def turn():
+    player.mana = 3
+    player.draw(5)
+    player.play(card_index=0,enemies=enemies,enemy_index=0)
+    for i in range(len(enemies)):
+        if enemies[i].health <= 0:
+            enemies.pop(i)   
+    for enemy in enemies:
+        enemy.attack(player)
+    player.discard_all
+
+win_count = 0
+loss_count = 0
+
+for i in range(5):
+    battle = True
+    player = Ironclad(deck)
+    test_dummy = Monstor(health=50, effects=EnemyEffects(effects=[DamagePlayer(amount=5)]))
+    enemies = [test_dummy]
+    while battle:
+        turn()
+        print(player)
+        if len(enemies) == 0 or player.health <= 0:
+            battle = False
+    if len(enemies) == 0:
+        win_count += 1
+    else:
+        loss_count += 1       
+
+print(win_count)
+    
+
     
