@@ -1,4 +1,4 @@
-from ironclad import *
+from entities.players.player import *
 
 class EnemyEffects:
     def __init__(self,effects:list):

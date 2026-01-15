@@ -1,14 +1,14 @@
-from ironclad import *
-from card import *
-from enemies import Monstor
-from enemy_effects import *
+from entities.players.player import *
+from cards.cards import *
+from entities.creatures.monster_class import Monstor
+from effects.enemy_effects import *
 
 deck = [
-    cards["Strike"],
-    cards["Strike"],
-    cards["Strike"],
-    cards["Strike"],
-    cards["Strike"],
+    ironclad_cards["Strike"],
+    ironclad_cards["Strike"],
+    ironclad_cards["Strike"],
+    ironclad_cards["Strike"],
+    ironclad_cards["Strike"],
    # cards["Defend"],
    # cards["Defend"],
    # cards["Defend"],
@@ -44,10 +44,10 @@ def print_stats(turn_count):
 win_count = 0
 loss_count = 0
 
-for i in range(10):
+for i in range(1):
     battle = True
     turn_count = 1
-    player = Ironclad(deck)
+    player = player(deck)
     test_dummy = Monstor(health=50, effects=EnemyEffects(effects=[DamagePlayer(amount=5)]))
     enemies = [test_dummy]
     while battle:

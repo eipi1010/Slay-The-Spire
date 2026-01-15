@@ -1,13 +1,15 @@
-from card import *
-from player_effects import *
+from cards.cards_class import *
+from effects.player_effects import *
 
-class Ironclad():
-    def __init__(self, deck: list, health:int = 87, mana:int = 3, discard_pile: list = [], hand: list =[]):
+class Player():
+    def __init__(self, deck: list, health:int = 87, mana:int = 3, block:int = 0, hand: list =[],discard_pile: list = [],exhaust_pile = []):
         self.deck = deck
         self.health = health
         self.mana=mana
-        self.discard_pile = discard_pile
+        self.block=block
         self.hand = hand
+        self.discard_pile = discard_pile
+        self.exhaust_pile = exhaust_pile
     
     def __str__(self):
         return(
@@ -42,9 +44,6 @@ class Ironclad():
         if self.hand[card_index].mana > self.mana:
             return False
         self.mana -= self.hand[card_index].mana
-        self.hand[card_index].play(enemies, enemy_index)
-        self.discard_pile.append(self.hand[card_index])
-        self.hand.pop(card_index)
         return True
     
 
