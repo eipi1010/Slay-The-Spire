@@ -1,5 +1,4 @@
-from cards.cards_class import *
-from effects.player_effects import *
+import random
 
 class Player():
     def __init__(self, deck: list, health:int = 87, mana:int = 3, block:int = 0, hand: list =[],discard_pile: list = [],exhaust_pile = []):

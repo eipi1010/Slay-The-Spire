@@ -1,5 +1,7 @@
-import random
-from effects.player_effects import *
+from effects.player_effects import CardEffects
+from entities.players.player import Player
+from entities.creatures.monster_class import Monster
+
 
 class Card:
     def __init__(self, name:str, mana:int, effects: CardEffects):
@@ -10,6 +12,6 @@ class Card:
     def __repr__(self):
         return self.name
     
-    def play(self, card_index:int, player, enemies, target_enemy):
+    def play(self, card_index:int, player: Player, enemies: list["Monster"], target_enemy:int) -> None:
         self.effects.apply(card_index, player, enemies, target_enemy)
 
