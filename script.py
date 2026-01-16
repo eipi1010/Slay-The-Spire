@@ -1,10 +1,13 @@
 
-
-from effects.player_effects import CardEffects
+from cards.ironclad_cards_module import ironclad_cards
 from entities.players.player import Player
-from cards.cards import ironclad_cards
-from entities.creatures.monster_class import Monster
+from entities.creatures.slimeboss import SlimeBoss
+
+'''
+from effects.player_effects import CardEffects
+
 from effects.enemy_effects import EnemyEffects, DamagePlayer
+'''
 
 deck = [
     ironclad_cards["Strike"],
@@ -25,17 +28,16 @@ def start_turn() -> list:
     return mana
 
 def turn():
-    player.mana = 3
-    player.draw(5)
+    player.start_turn()
     for i in range(len(player.hand)):
         if player.play(card_index=0,enemies=enemies,enemy_index=0):
             i = 0
     for i in range(len(enemies)):
         if enemies[i].health <= 0:
             enemies.pop(i)   
-    for enemy in enemies:
-        enemy.attack(player)
-    player.discard_all
+    for i in range(len(enemies)):
+        enemies[i].attack(player,enemies,target_enemy=i)
+        enemies[i].turn += 1
 
 def print_stats(turn_count):
     print(f"--------------Turn Count: {turn_count}--------------\n")
@@ -51,11 +53,10 @@ for i in range(1):
     battle = True
     turn_count = 1
     player = Player(deck)
-    test_dummy = Monster(health=50, effects=EnemyEffects(effects=[DamagePlayer(amount=5)]))
-    enemies = [test_dummy]
+    enemies = [SlimeBoss]
     while battle:
-        print_stats(turn_count)
         turn()
+        print_stats(turn_count)
         turn_count += 1
         if len(enemies) == 0 or player.health <= 0:
             battle = False
