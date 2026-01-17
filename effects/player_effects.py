@@ -19,13 +19,19 @@ class DamageEffect:
     def apply(self,card_index:int, player:"Player", enemies:list["Monster"], enemy_index:int):
         if player.weak > 0:
             self.amount = floor(self.amount * 0.75)
-        enemies[enemy_index].lose_health(self.amount)
+        enemies[enemy_index].take_damage(self.amount)
 
 class BlockEffect:
     def __init__(self,amount:int):
         self.amount = amount
     def apply(self,card_index:int, player:"Player", enemies:list["Monster"] , enemy_index:int):
         player.block += self.amount
+
+class VulnerableEffect:
+    def __init__(self,amount:int):
+        self.amount = amount
+    def apply(self,card_index:int,player:"Player",enemies:list["Monster"],enemy_index:int):
+        enemies[enemy_index].vulnerable += self.amount
 
 class SelfDiscardEffect:
     def __init__(self):

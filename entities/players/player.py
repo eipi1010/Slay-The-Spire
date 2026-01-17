@@ -13,7 +13,8 @@ class Player:
             hand: list =None,
             discard_pile: list =None,
             exhaust_pile =None,
-            weak:int = 0
+            weak:int = 0,
+            vulnerable:int = 0
                  ):
         
         #Resources 
@@ -29,6 +30,7 @@ class Player:
 
         #Debuffs
         self.weak = weak
+        self.vulnerable = vulnerable
 
     
     def __str__(self):
@@ -46,6 +48,7 @@ class Player:
         self.discard_pile.extend(self.hand)
         self.block = 0
         self.weak = max(0,self.weak-1)
+        self.vulnerable = max(0,self.vulnerable-1)
         self.hand.clear()
         self.draw(5)
     

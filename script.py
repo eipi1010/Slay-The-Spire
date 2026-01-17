@@ -19,7 +19,7 @@ deck = [
     ironclad_cards["Defend"],
     ironclad_cards["Defend"],
     ironclad_cards["Defend"],
-   # cards["Bash"]
+    #cards["Bash"]
    ]
 
 def start_turn() -> list:

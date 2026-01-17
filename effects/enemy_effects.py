@@ -37,4 +37,10 @@ class GoopSpray:
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
         for i in range(self.amount):
             player.discard_pile.append(status_cards["Slimed"])
+    
+class ApplyBlock:
+    def __init__(self,amount:int):
+        self.amount = amount
+    def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
+        enemies[target_enemy].block += self.amount
 
