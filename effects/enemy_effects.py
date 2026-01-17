@@ -23,7 +23,13 @@ class DamagePlayer:
     def __init__(self,amount:int):
         self.amount = amount
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
-        player.lose_health(self.amount)
+        player.take_damage(self.amount)
+
+class WeakenPlayer:
+    def __init__(self,amount:int):
+        self.amount = amount
+    def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
+        player.weak += self.amount
 
 class GoopSpray:
     def __init__(self,amount:int):

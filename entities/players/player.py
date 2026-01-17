@@ -1,14 +1,35 @@
 import random
 
-class Player():
-    def __init__(self, deck: list, health:int = 87, mana:int = 0, block:int = 0, hand: list =[],discard_pile: list = [],exhaust_pile = []):
-        self.deck = deck
+#ADDDDD WEAK
+
+
+
+class Player:
+    def __init__(
+            self, deck:list,
+            health:int = 87,
+            mana:int = 0,
+            block:int = 0,
+            hand: list =None,
+            discard_pile: list =None,
+            exhaust_pile =None,
+            weak:int = 0
+                 ):
+        
+        #Resources 
         self.health = health
         self.mana=mana
         self.block=block
-        self.hand = hand
-        self.discard_pile = discard_pile
-        self.exhaust_pile = exhaust_pile
+        
+        #CardsPiles
+        self.deck = deck
+        self.hand = hand if hand is not None else []
+        self.discard_pile = discard_pile if discard_pile is not None else []
+        self.exhaust_pile = exhaust_pile if exhaust_pile is not None else []
+
+        #Debuffs
+        self.weak = weak
+
     
     def __str__(self):
         return(
@@ -23,11 +44,17 @@ class Player():
     def start_turn(self):
         self.mana = 3
         self.discard_pile.extend(self.hand)
+        self.block = 0
+        self.weak = max(0,self.weak-1)
         self.hand.clear()
         self.draw(5)
     
-    def lose_health(self,amount:int):
-        self.health -= amount
+    def take_damage(self,amount:int):
+        if self.block >= amount:
+            self.block - amount
+        else:
+            health_lost = amount - self.block
+            self.health -= health_lost
 
     def draw(self, card_draw:int) -> None:
         if len(self.deck) != 0:

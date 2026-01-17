@@ -15,10 +15,10 @@ deck = [
     ironclad_cards["Strike"],
     ironclad_cards["Strike"],
     ironclad_cards["Strike"],
-   # cards["Defend"],
-   # cards["Defend"],
-   # cards["Defend"],
-   # cards["Defend"],
+    ironclad_cards["Defend"],
+    ironclad_cards["Defend"],
+    ironclad_cards["Defend"],
+    ironclad_cards["Defend"],
    # cards["Bash"]
    ]
 

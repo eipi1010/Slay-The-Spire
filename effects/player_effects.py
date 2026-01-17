@@ -1,3 +1,5 @@
+from math import floor
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -15,6 +17,8 @@ class DamageEffect:
     def __init__(self,amount:int):
         self.amount = amount
     def apply(self,card_index:int, player:"Player", enemies:list["Monster"], enemy_index:int):
+        if player.weak > 0:
+            self.amount = floor(self.amount * 0.75)
         enemies[enemy_index].lose_health(self.amount)
 
 class BlockEffect:
