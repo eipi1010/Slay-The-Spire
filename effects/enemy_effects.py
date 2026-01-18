@@ -44,3 +44,21 @@ class ApplyBlock:
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
         enemies[target_enemy].block += self.amount
 
+class Split:
+    def __init__(self, effects:list,amount:int,monsterspawn:list["Monster"]):
+        self.effects = effects
+        self.amount = amount
+        self.monsterspawn = monsterspawn
+    def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
+        if enemies[target_enemy].health <= self.amount:
+            for enemy in enemies:
+                enemy.health = enemies[target_enemy].health // 2
+                enemy.turn = enemies[target_enemy].turn
+            enemies.pop(target_enemy)
+            for enemy in self.monsterspawn:
+                enemies.append(enemy)
+        else:
+            for effect in self.effects:
+                effect.apply(player,enemies,target_enemy)
+
+

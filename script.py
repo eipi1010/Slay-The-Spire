@@ -37,6 +37,10 @@ def turn():
             enemies.pop(i)   
     for i in range(len(enemies)):
         enemies[i].attack(player,enemies,target_enemy=i)
+
+    for i in range(len(enemies)):
+        for enemy in enemies:
+            print(enemy)
         enemies[i].turn += 1
 
 def print_stats(turn_count):

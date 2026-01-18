@@ -12,7 +12,7 @@ class Monster:
             self,
             health:int,
             intent:list["EnemyEffects"],
-            turn:int = 0,
+            turn:int = 1,
             block:int = 0,
             vulnerable:int = 0,
             ):
@@ -37,7 +37,7 @@ class Monster:
             self.health -= health_lost
 
     def attack(self,player:"Player",enemies:list["Monster"],target_enemy:int):
-        self.intent[self.turn % len(self.intent)].apply(player,self,target_enemy)
+        self.intent[self.turn % len(self.intent)].apply(player,enemies,target_enemy)
 
     
     
