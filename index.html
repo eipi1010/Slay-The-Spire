@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    
+    <py-config>
+        packages = ["arrr"]
+    </py-config>
+</head>
+<body>
+    <input type="text" id="english" placeholder="Type English here...">
+    <button py-click="translate_english">Translate to Pirate</button>
+    <div id="output"></div>
+
+    <py-script>
+        import arrr
+        from pyscript import document
+
+        def translate_english(event):
+            input_text = document.querySelector("#english")
+            english = input_text.value
+            output_div = document.querySelector("#output")
+            # This calls the library you imported
+            output_div.innerText = arrr.translate(english)
+    </py-script>
+</body>
+</html>
