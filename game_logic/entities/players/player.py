@@ -5,10 +5,6 @@ if TYPE_CHECKING:
 
 import random
 
-#ADDDDD WEAK
-
-
-
 class Player:
     def __init__(self, deck:list,health:int):
         
@@ -26,12 +22,14 @@ class Player:
         #Debuffs
         self.weak = 0
         self.vulnerable = 0
+        self.frail = 0
 
     
     def __str__(self):
         return(
             "---Ironclad Stats---\n"
             f"Health: {self.health}:\n"
+            f"Block: {self.block}:\n"
             f"Draw Pile: {[card for card in self.deck]}\n"
             f"Hand: {[card for card in self.hand]}\n"
             f"Discard Pile: {[card for card in self.discard_pile]}\n"
@@ -53,6 +51,7 @@ class Player:
         self.block = 0
         self.weak = max(0,self.weak-1)
         self.vulnerable = max(0,self.vulnerable-1)
+        self.frail = max(0,self.frail-1)
         self.hand.clear()
     
     def take_damage(self,amount:int):

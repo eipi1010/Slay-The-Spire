@@ -41,6 +41,14 @@ class WeakenPlayer:
         player.weak += self.amount
     def __str__(self):
         return(f"Applying {self.amount} weak")
+    
+class ApplyFrail:
+    def __init__(self,amount:int):
+        self.amount=amount
+    def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
+        player.frail += self.amount
+    def __str__(self):
+        return(f"Applying {self.amount} frail")
 
 class GoopSpray:
     def __init__(self,amount:int):

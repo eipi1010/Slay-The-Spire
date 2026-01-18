@@ -15,13 +15,9 @@ class Battle:
 
     def run(self):
         while self.is_active:
-            if self.verbose:
-                print(self)
-
-            self.play_turn()
+            self.play_turn() 
             self.check_game_over()
             self.turn_count += 1
-
 
         return len(self.enemies) == 0
 
@@ -29,7 +25,12 @@ class Battle:
     def play_turn(self):
         self.player.start_turn()
 
+        if self.verbose: print(self)
+
         self.player.play_randomly(self.enemies)
+
+        if self.verbose: print(self)
+
         self.enemies = [e for e in self.enemies if e.health > 0]
         self.player.end_turn()
 

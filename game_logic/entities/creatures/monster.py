@@ -12,7 +12,7 @@ class Monster:
         self.health = health
         self.name = name
         self.intent = intent
-        self.turn_count = 1
+        self.turn_count = 0
         self.block = 0
         self.weak = 0
         self.vulnerable = 0

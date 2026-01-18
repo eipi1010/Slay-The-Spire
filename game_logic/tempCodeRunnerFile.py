@@ -1,0 +1,1 @@
+deck = [copy.deepcopy(ironclad_cards[name]) for name in card_names]

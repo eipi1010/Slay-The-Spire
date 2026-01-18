@@ -31,6 +31,8 @@ class VulnerableEffect:
     def __init__(self,amount:int):
         self.amount = amount
     def apply(self,card_index:int,player:"Player",enemies:list["Monster"],enemy_index:int):
+        if player.frail >= 1:
+            self.amount = floor(self.amount*0.75)
         enemies[enemy_index].vulnerable += self.amount
 
 class SelfDiscardEffect:
@@ -46,18 +48,6 @@ class SelfExhaustEffect:
     def apply(self, card_index:int, player:"Player",enemies:list["Monster"], enemy_index:int):
         player.exhaust_pile.append(player.hand[card_index])
         player.hand.pop(card_index)
-
-
-
-
-
-   # '''
-    #class BlockEffect:
-    #    def __init__(self,amount:int):
-    #        self.amount = amount
-
-
-   # '''
 
 
 

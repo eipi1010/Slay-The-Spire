@@ -2,7 +2,7 @@ from cards.cards import Card
 from effects.player_effects import CardEffects, DamageEffect, SelfDiscardEffect, BlockEffect, VulnerableEffect
 
 ironclad_cards = {
-    "Strike": Card(name="Strike",mana=1,effects = CardEffects(effects=[DamageEffect(amount=5),SelfDiscardEffect()])),
+    "Strike": Card(name="Strike",mana=1,effects = CardEffects(effects=[DamageEffect(amount=6),SelfDiscardEffect()])),
     "Defend": Card(name="Defend",mana=1,effects=CardEffects([BlockEffect(5),SelfDiscardEffect()])),
     "Bash": Card(name="Bash",mana=1,effects=CardEffects([DamageEffect(8),VulnerableEffect(2),SelfDiscardEffect()])),
    # "Shrug It Off": Card(name="Shrug It Off",damage=0,block=8,mana=1,draw=1),
