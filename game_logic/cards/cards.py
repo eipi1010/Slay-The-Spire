@@ -4,14 +4,13 @@ if TYPE_CHECKING:
     from entities.players.player import Player
     from entities.creatures.monster import Monster
 
-
 class Card:
-    def __init__(self, name, mana,type,exhaust=False):
+    def __init__(self, name, mana,type,exhaust=False,upgraded=False):
         self.name = name
         self.mana = mana
         self.type = type
         self.exhaust=exhaust 
-        self.upgraded = False
+        self.upgraded = upgraded
 
     def __repr__(self):
         return self.name

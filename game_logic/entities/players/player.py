@@ -4,6 +4,7 @@ if TYPE_CHECKING:
     from entities.creatures.monster import Monster
 
 import random
+import math
 
 class Player:
     def __init__(self, deck:list,health:int):
@@ -53,10 +54,10 @@ class Player:
             return False
         
         self.mana -= card.mana
-        
-        card.play(self, enemies, target_index)
 
         self.hand.pop(card_index)
+
+        card.play(self, enemies, target_index)
 
         if card.exhaust == True:
             self.exhaust_pile.append(card)
@@ -73,13 +74,7 @@ class Player:
         self.vulnerable = max(0,self.vulnerable-1)
         self.frail = max(0,self.frail-1)
         self.hand.clear()
-    
-    def take_damage(self,amount:int):
-        if self.block >= amount:
-            self.block - amount
-        else:
-            health_lost = amount - self.block
-            self.health = max(self.health - health_lost,0)
+
 
     def draw(self, card_draw:int) -> None:
         if len(self.deck) != 0:
@@ -93,6 +88,18 @@ class Player:
                 random.shuffle(self.deck)
             self.hand.append(self.deck[0])
             self.deck.pop(0)
+
+    def take_damage(self,amount:int):
+        if self.block >= amount:
+            self.block - amount
+        else:
+            health_lost = amount - self.block
+            self.health = max(self.health - health_lost,0)
+
+    def gain_block(self,amount:int):
+        if self.frail >= 1:
+            amount = math.floor(amount * 0.75)
+        self.block += amount
         
 
 
