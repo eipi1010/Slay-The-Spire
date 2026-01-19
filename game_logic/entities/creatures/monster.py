@@ -16,6 +16,9 @@ class Monster:
         self.block = 0
         self.weak = 0
         self.vulnerable = 0
+    def __repr__(self):
+        return self.name
+
     def __str__(self):
         return(
             f"---{self.name}---\n"
