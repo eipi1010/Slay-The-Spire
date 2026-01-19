@@ -21,3 +21,5 @@ def run_simulation(iterations=100):
     print(f"Results after {iterations} simulations:")
     print(f"Wins: {win_count} | Losses: {iterations - win_count}")
     print(f"Win Rate: {(win_count/iterations)*100}%")
+
+run_simulation(1)
