@@ -30,9 +30,18 @@ class DamagePlayer:
     def __init__(self,amount:int):
         self.amount = amount
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
-        player.take_damage(self.amount)
+        strength_boost = enemies[target_enemy].strength
+        player.take_damage(self.amount + strength_boost)
     def __str__(self):
         return(f"Dealing {self.amount} damage")
+    
+class GainStrength:
+    def __init__(self,amount:int):
+        self.amount = amount
+    def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
+        enemies[target_enemy].strength += self.amount
+    def __str__(self):
+        return(f"Gaining {self.amount} strength")
 
 class WeakenPlayer:
     def __init__(self,amount:int):
@@ -42,7 +51,7 @@ class WeakenPlayer:
     def __str__(self):
         return(f"Applying {self.amount} weak")
     
-class ApplyFrail:
+class FrailPlayer:
     def __init__(self,amount:int):
         self.amount=amount
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
@@ -59,7 +68,7 @@ class GoopSpray:
     def __str__(self):
         return(f"Adding {self.amount} slimed card(s) to discard pile")
     
-class ApplyBlock:
+class GainBlock:
     def __init__(self,amount:int):
         self.amount = amount
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):

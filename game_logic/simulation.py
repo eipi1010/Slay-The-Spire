@@ -2,9 +2,9 @@
 from battle import Battle   
 from cards.ironclad_cards_module import ironclad_cards
 from entities.players.player import Player
-from entities.creatures.monster_types.slimeboss import SlimeBoss
-from entities.creatures.monster_types.acidslimesmall import AcidSlimeSmall
+from entities.creatures.monster_pool_module import monster_pool
 import copy
+
 
 def run_simulation(iterations=100):
     win_count = 0
@@ -14,7 +14,7 @@ def run_simulation(iterations=100):
     # Pass the class SlimeBoss, not an instance, to the Battle
         deck = [copy.deepcopy(ironclad_cards[name]) for name in card_names]
         player = Player(deck,87)
-        enemies = [SlimeBoss()]
+        enemies = copy.deepcopy(monster_pool[1])
         battle = Battle(player, enemies, verbose=i == 9)
         if battle.run():
             win_count += 1

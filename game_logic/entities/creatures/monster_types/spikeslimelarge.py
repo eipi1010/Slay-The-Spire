@@ -1,6 +1,6 @@
 import random
 from entities.creatures.monster import Monster
-from effects.enemy_effects import EnemyEffects, DamagePlayer, GoopSpray, Split, ApplyFrail
+from effects.enemy_effects import EnemyEffects, DamagePlayer, GoopSpray, Split, FrailPlayer
 from entities.creatures.monster_types.spikeslimemedium import SpikeSlimeMedium
 
 class SpikeSlimeLarge(Monster):
@@ -12,7 +12,7 @@ class SpikeSlimeLarge(Monster):
         # 2. Define intents using that specific threshold
         intent = [
             EnemyEffects(effects=[Split([DamagePlayer(16), GoopSpray(2)], split_threshold, [SpikeSlimeMedium(), SpikeSlimeMedium()])]),
-            EnemyEffects(effects=[Split([ApplyFrail(2)], split_threshold, [SpikeSlimeMedium(), SpikeSlimeMedium()])]),
+            EnemyEffects(effects=[Split([FrailPlayer(2)], split_threshold, [SpikeSlimeMedium(), SpikeSlimeMedium()])]),
         ]
 
         # 3. Pass everything to the parent Monster class
