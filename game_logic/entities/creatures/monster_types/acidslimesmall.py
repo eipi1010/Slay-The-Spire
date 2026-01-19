@@ -1,15 +1,23 @@
 import random
 from entities.creatures.monster import Monster
-from effects.enemy_effects import EnemyEffects, WeakenPlayer, DamagePlayer
+from effects.enemy_effects import WeakenPlayer, DamagePlayer
 
 class AcidSlimeSmall(Monster):
     def __init__(self):
+        # 1. Roll HP
         hp = random.randint(8, 12)
-
-        intent = [
-            EnemyEffects(effects=[WeakenPlayer(1)]),
-            EnemyEffects(effects=[DamagePlayer(3)]),
+        
+        # 2. Initialize parent without the fixed intent list
+        super().__init__(name="Acid Slime (S)", health=hp)
+        
+        # 3. Define the attack pool
+        self.attack_pool = [
+            WeakenPlayer(1),
+            DamagePlayer(3)
         ]
 
-        # 3. Pass everything to the parent Monster class
-        super().__init__(name="Acid Slime (S)", health=hp, intent=intent)
+    def get_current_intent(self):
+        """
+        Small slimes usually cycle through their limited moves.
+        """
+        return self.attack_pool[self.turn_count % len(self.attack_pool)]

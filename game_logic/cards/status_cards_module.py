@@ -1,8 +1,13 @@
 from game_logic.cards.cards import Card
-from game_logic.effects.player_effects import CardEffects, SelfExhaustEffect
 
-status_cards = {
-    "Slimed": Card(name="Slimed",mana=1,effects=CardEffects(effects=[SelfExhaustEffect()]))
-}
+class Slimed(Card):
+    def __init__(self):
+        super().__init__("Slimed",1,"Status",True)
+
+    def _on_upgrade(self):
+        pass
+
+    def play(self,player, enemies, target_index):
+        pass
 
 

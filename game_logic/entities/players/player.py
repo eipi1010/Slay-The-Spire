@@ -43,8 +43,28 @@ class Player:
 
     def play_randomly(self,enemies):
         for i in range(len(self.hand)):
-            if self.play(card_index=0,enemies=enemies,enemy_index=0):
+            if self.execute_card_play(card_index=0,enemies=enemies,target_index=0):
                 i = 0
+
+    def execute_card_play(self, card_index, target_index, enemies):
+        card = self.hand[card_index]
+
+        if self.hand[card_index].mana > self.mana:
+            return False
+        
+        self.mana -= card.mana
+        
+        card.play(self, enemies, target_index)
+
+        self.hand.pop(card_index)
+
+        if card.exhaust == True:
+            self.exhaust_pile.append(card)
+        elif card.type == "Power":
+            self.powers.append(card) # Or just let it exist in the "active" zone
+        else:
+            self.discard_pile.append(card)
+        return True
 
     def end_turn(self):
         self.discard_pile.extend(self.hand)
@@ -74,12 +94,19 @@ class Player:
             self.hand.append(self.deck[0])
             self.deck.pop(0)
         
-    def play(self, card_index:int, enemies:list["Monster"], enemy_index:int = 0) -> bool:
+
+
+'''
+    def play(self, card_index:int, enemies:list["Monster"],target_index:int = 0) -> bool:
         if self.hand[card_index].mana > self.mana:
             return False
         self.mana -= self.hand[card_index].mana
-        self.hand[card_index].play(card_index, self, enemies, enemy_index)
+        self.hand[card_index].play(self, enemies, target_index)
         return True
+
+
+'''
+
 
 
 

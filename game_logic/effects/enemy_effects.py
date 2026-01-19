@@ -4,7 +4,7 @@ if TYPE_CHECKING:
     from entities.creatures.monster import Monster
     from entities.players.player import Player
 
-from game_logic.cards.status_cards_module import status_cards
+from game_logic.cards.status_cards_module import Slimed
 
 class EnemyEffects:
     def __init__(self,effects:list):
@@ -64,7 +64,7 @@ class GoopSpray:
         self.amount = amount
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
         for i in range(self.amount):
-            player.discard_pile.append(status_cards["Slimed"])
+            player.discard_pile.append(Slimed())
     def __str__(self):
         return(f"Adding {self.amount} slimed card(s) to discard pile")
     
@@ -77,22 +77,17 @@ class GainBlock:
         return(f"Applying {self.amount} block to self")
 
 class Split:
-    def __init__(self, effects:list,amount:int,monsterspawn:list["Monster"]):
-        self.effects = effects
-        self.amount = amount
-        self.monsterspawn = monsterspawn
+    def __init__(self, spawn:list["Monster"]):
+        self.spawn = spawn
     def apply(self,player:"Player",enemies:list["Monster"],target_enemy:int):
-        if enemies[target_enemy].health <= self.amount:
-            for enemy in enemies:
-                enemy.health = enemies[target_enemy].health // 2
-            enemies.pop(target_enemy)
-            for enemy in self.monsterspawn:
-                enemies.append(enemy)
-        else:
-            for effect in self.effects:
-                effect.apply(player,enemies,target_enemy)
+        
+        for spawn in self.spawn:
+            spawn.health = enemies[target_enemy].health // 2
+        enemies.pop(target_enemy)
+        for enemy in self.spawn:
+            enemies.append(enemy)
         
     def __str__(self):
-        return ", ".join([str(e) for e in self.effects])
+        return ("Splitting")
 
 
