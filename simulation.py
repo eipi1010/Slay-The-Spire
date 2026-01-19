@@ -7,13 +7,13 @@ import copy
 
 def run_simulation(iterations=100):
     win_count = 0
-    card_names = ["Strike"]*5 + ["Defend"]*4 + ["Bash"]
+    card_names = ["Strike"]*5 + ["Defend"]*4 + ["Bash"] +["Anger"]
 
     for i in range(iterations):
     # Pass the class SlimeBoss, not an instance, to the Battle
         deck = [copy.deepcopy(ironclad_cards[name]) for name in card_names]
         player = Player(deck,87)
-        enemies = copy.deepcopy(monster_pool[1])
+        enemies = copy.deepcopy(monster_pool[2])
         battle = Battle(player, enemies, verbose=i == 0)
         if battle.run():
             win_count += 1

@@ -1,4 +1,5 @@
 from math import floor
+import copy
 
 from typing import TYPE_CHECKING
 
@@ -35,6 +36,21 @@ class VulnerableEffect:
             self.amount = floor(self.amount*0.75)
         enemies[enemy_index].vulnerable += self.amount
 
+class DuplicateToDiscardPileEffect:
+    def __init__(self,amount:int):
+        self.amount = amount
+    def apply(self,card_index:int,player:"Player",enemies:list["Monster"],enemy_index:int):
+        for _ in range(self.amount):
+            duplicate_card = copy.deepcopy(player.hand[card_index])
+            player.discard_pile.append(duplicate_card)
+
+class UpgradeRandomCardInHandEffect:
+    def __init__(self,amount:int):
+        self.amount = amount
+    def apply(self,card_index:int,player:"Player",enemies:list["Monster"],enemy_index:int):
+        for _ in range(self.amount):
+            
+        
 class SelfDiscardEffect:
     def __init__(self):
         pass
