@@ -1,5 +1,5 @@
-from cards.cards import Card
-from effects.player_effects import CardEffects, DamageEffect, SelfDiscardEffect, BlockEffect, VulnerableEffect
+from game_logic.cards.cards import Card
+from game_logic.effects.player_effects import CardEffects, DamageEffect, SelfDiscardEffect, BlockEffect, VulnerableEffect
 
 ironclad_cards = {
     "Strike": Card(name="Strike",mana=1,effects = CardEffects(effects=[DamageEffect(amount=6),SelfDiscardEffect()])),

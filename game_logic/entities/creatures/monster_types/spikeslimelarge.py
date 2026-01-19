@@ -1,7 +1,7 @@
 import random
-from entities.creatures.monster import Monster
-from effects.enemy_effects import EnemyEffects, DamagePlayer, GoopSpray, Split, FrailPlayer
-from entities.creatures.monster_types.spikeslimemedium import SpikeSlimeMedium
+from game_logic.entities.creatures.monster import Monster
+from game_logic.effects.enemy_effects import EnemyEffects, DamagePlayer, GoopSpray, Split, FrailPlayer
+from game_logic.entities.creatures.monster_types.spikeslimemedium import SpikeSlimeMedium
 
 class SpikeSlimeLarge(Monster):
     def __init__(self):

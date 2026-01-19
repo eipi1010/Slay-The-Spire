@@ -4,7 +4,7 @@ if TYPE_CHECKING:
     from entities.creatures.monster import Monster
     from entities.players.player import Player
 
-from cards.status_cards_module import status_cards
+from game_logic.cards.status_cards_module import status_cards
 
 class EnemyEffects:
     def __init__(self,effects:list):

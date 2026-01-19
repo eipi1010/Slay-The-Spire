@@ -1,7 +1,7 @@
 import random
-from entities.creatures.monster import Monster
-from effects.enemy_effects import EnemyEffects, WeakenPlayer, DamagePlayer, GoopSpray, Split
-from entities.creatures.monster_types.acidslimemedium import AcidSlimeMedium
+from game_logic.entities.creatures.monster import Monster
+from game_logic.effects.enemy_effects import EnemyEffects, WeakenPlayer, DamagePlayer, GoopSpray, Split
+from game_logic.entities.creatures.monster_types.acidslimemedium import AcidSlimeMedium
 
 class AcidSlimeLarge(Monster):
     def __init__(self):

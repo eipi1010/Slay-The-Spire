@@ -1,7 +1,7 @@
-from entities.creatures.monster import Monster
-from effects.enemy_effects import EnemyEffects, Charging, DamagePlayer, GoopSpray, Split
-from entities.creatures.monster_types.acidslimelarge import AcidSlimeLarge
-from entities.creatures.monster_types.spikeslimelarge import SpikeSlimeLarge
+from game_logic.entities.creatures.monster import Monster
+from game_logic.effects.enemy_effects import EnemyEffects, Charging, DamagePlayer, GoopSpray, Split
+from game_logic.entities.creatures.monster_types.acidslimelarge import AcidSlimeLarge
+from game_logic.entities.creatures.monster_types.spikeslimelarge import SpikeSlimeLarge
 
 class SlimeBoss(Monster):
     def __init__(self):

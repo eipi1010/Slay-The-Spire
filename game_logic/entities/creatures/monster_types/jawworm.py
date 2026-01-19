@@ -1,5 +1,5 @@
-from entities.creatures.monster import Monster
-from effects.enemy_effects import EnemyEffects, GainStrength, DamagePlayer, GainBlock
+from game_logic.entities.creatures.monster import Monster
+from game_logic.effects.enemy_effects import EnemyEffects, GainStrength, DamagePlayer, GainBlock
 import random
 
 class JawWorm(Monster):

@@ -1,6 +1,6 @@
 import random
-from entities.creatures.monster import Monster
-from effects.enemy_effects import EnemyEffects, FrailPlayer, DamagePlayer, GoopSpray
+from game_logic.entities.creatures.monster import Monster
+from game_logic.effects.enemy_effects import EnemyEffects, FrailPlayer, DamagePlayer, GoopSpray
 
 class SpikeSlimeMedium(Monster):
     def __init__(self):
