@@ -11,6 +11,7 @@ class Player:
         
         #Resources 
         self.health=health
+        self.max_health=health
         self.mana=0
         self.block=0
         
@@ -19,6 +20,10 @@ class Player:
         self.hand = []
         self.discard_pile = []
         self.exhaust_pile = []
+
+        #Buffs
+        self.powers = []
+        self.relics = []
 
         #Debuffs
         self.weak = 0
@@ -40,6 +45,13 @@ class Player:
     def start_turn(self):
         self.mana = 3
         self.draw(5)
+        self.block = 0
+
+    def play_one_turn_randomly(self,enemies):
+        for i in range(len(self.hand)):
+            if self.execute_card_play(card_index=random.randint(0,len(self.hand)-1),enemies=enemies,target_index=0):
+                return True
+        return False
 
 
     def play_randomly(self,enemies):
@@ -69,7 +81,6 @@ class Player:
 
     def end_turn(self):
         self.discard_pile.extend(self.hand)
-        self.block = 0
         self.weak = max(0,self.weak-1)
         self.vulnerable = max(0,self.vulnerable-1)
         self.frail = max(0,self.frail-1)
@@ -91,7 +102,7 @@ class Player:
 
     def take_damage(self,amount:int):
         if self.block >= amount:
-            self.block - amount
+            self.block -= amount
         else:
             health_lost = amount - self.block
             self.health = max(self.health - health_lost,0)

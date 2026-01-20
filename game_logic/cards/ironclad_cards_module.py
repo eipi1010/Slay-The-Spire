@@ -18,7 +18,7 @@ class Strike(Card):
 class Defend(Card):
     def __init__(self, upgraded=False):
         super().__init__("Defend", 1, "Skill")
-        self.block = 5
+        self.block = 20
         if upgraded:
             self.upgrade()
 
@@ -92,14 +92,3 @@ class Armaments(Card):
 
 
     
-
-
-# Map names to their actual Classes
-card_map = {
-    "Strike": Strike,
-    "Bash": Bash,
-    "Defend":Defend,
-    "Anger":Anger,
-    "Armaments":Armaments,
-
-}

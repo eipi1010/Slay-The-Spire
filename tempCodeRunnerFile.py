@@ -1,1 +1,1 @@
-# Now 'deck' is a list of actual Card objects
+import random

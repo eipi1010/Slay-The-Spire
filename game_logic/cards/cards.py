@@ -4,6 +4,8 @@ if TYPE_CHECKING:
     from entities.players.player import Player
     from entities.creatures.monster import Monster
 
+
+
 class Card:
     def __init__(self, name, mana,type,exhaust=False,upgraded=False):
         self.name = name

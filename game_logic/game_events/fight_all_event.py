@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from entities.creatures.monster import Monster
 
 import copy
-from game_logic.battle import Battle
+from game_logic.utils.battle import Battle
 
 class FightAll:
     def __init__(self,monster_pool:list["Monster"]):

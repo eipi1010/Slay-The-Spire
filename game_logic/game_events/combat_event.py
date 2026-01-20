@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from entities.creatures.monster import Monster
 
 import copy
-from battle import Battle
+from game_logic.utils.battle import Battle
 
 class CombatEvent():
     def __init__(self,enemies:list["Monster"]):
